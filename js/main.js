@@ -8,7 +8,6 @@ const TELEGRAM_CHAT_ID = "YOUR_CHAT_ID_HERE";
 const translations = {
     en: {
         "nav-about": "About",
-        "nav-projects": "Projects",
         "nav-videos": "Videos",
         "nav-animation": "Animation",
         "nav-motion": "Motion",
@@ -19,10 +18,6 @@ const translations = {
         "hero-sub": "Architecture of premium visual worlds and digital experiences for brands that dictate their own rules.",
         "about-title": "Philosophy<br>of Dominance",
         "about-text": "We don't just draw pictures. We design visual codes of superiority. <strong>MS Design</strong> creates elite design that transmits unattainable status, causing awe and desire in the audience. Every detail is a strategic step towards the absolute leadership of the brand in its niche.",
-        "project-cat-1": "Branding",
-        "project-cat-2": "Fashion Book",
-        "project-cat-3": "UI/UX Art",
-        "project-cat-4": "Packaging",
         "stat-years": "Years of Excellence",
         "stat-projects": "Projects Delivered",
         "stat-clients": "Happy Clients",
@@ -49,7 +44,6 @@ const translations = {
     },
     ua: {
         "nav-about": "Про нас",
-        "nav-projects": "Проекти",
         "nav-videos": "Відео",
         "nav-animation": "Анімація",
         "nav-motion": "Моушн",
@@ -60,10 +54,6 @@ const translations = {
         "hero-sub": "Архітектура преміальних візуальних світів та цифрового досвіду для брендів, які диктують власні правила.",
         "about-title": "Філософія<br>Домінування",
         "about-text": "Ми не просто малюємо картинки. Ми проектуємо візуальні коди переваги. <strong>MS Design</strong> створює елітарний дизайн, який транслює недосяжний статус, викликаючи в аудиторії трепет та бажання володіти. Кожна деталь — це стратегічний крок до абсолютного лідерства бренду в його ніші.",
-        "project-cat-1": "Брендинг",
-        "project-cat-2": "Дизайн Книг",
-        "project-cat-3": "UI/UX Арт",
-        "project-cat-4": "Упаковка",
         "stat-years": "Років Досвіду",
         "stat-projects": "Проектів Завершено",
         "stat-clients": "Задоволених Клієнтів",
@@ -89,8 +79,7 @@ const translations = {
         "error-send": "Помилка відправки. Спробуйте пізніше або зв'яжіться напряму."
     },
     es: {
-        "nav-about": "Sobre mí",
-        "nav-projects": "Proyectos",
+        "nav-about": "Nosotros",
         "nav-videos": "Vídeos",
         "nav-animation": "Animación",
         "nav-motion": "Movimiento",
@@ -101,10 +90,6 @@ const translations = {
         "hero-sub": "Arquitectura de mundos visuales premium y experiencias digitales para marcas que dictan sus propias reglas.",
         "about-title": "Filosofía de<br>Dominación",
         "about-text": "No solo dibujamos imágenes. Diseñamos códigos visuales de superioridad. <strong>MS Design</strong> crea un diseño de élite que transmite un estatus inalcanzable, provocando asombro y deseo en la audiencia. Cada detalle es un paso estratégico hacia el liderazgo absoluto de la marca en su nicho.",
-        "project-cat-1": "Identidad",
-        "project-cat-2": "Editorial",
-        "project-cat-3": "Arte UI/UX",
-        "project-cat-4": "Embalaje",
         "stat-years": "Años de Excelencia",
         "stat-projects": "Proyectos Entregados",
         "stat-clients": "Clientes Satisfechos",
