@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS Design | Award Winning Portfolio</title>
+    
+    <!-- SEO & Meta Tags -->
+    <meta name="description" content="Architecture of premium visual worlds and digital experiences for brands that dictate their own rules. Luxury branding, editorial design, UI/UX art, and premium packaging.">
+    <meta name="keywords" content="MS Design, luxury identity, branding, fashion book, editorial design, UI/UX, packaging, premium web design">
+    <meta name="author" content="MS Design">
+    
+    <!-- Open Graph (Facebook, Telegram, WhatsApp) -->
+    <meta property="og:title" content="MS Design | Award Winning Portfolio">
+    <meta property="og:description" content="Architecture of premium visual worlds and digital experiences for brands that dictate their own rules.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://msdesign-portfolio.com">
+    <meta property="og:image" content="assets/images/og-share.png">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MS Design | Award Winning Portfolio">
+    <meta name="twitter:description" content="Architecture of premium visual worlds and digital experiences for brands that dictate their own rules.">
+    <meta name="twitter:image" content="assets/images/og-share.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@700;800&display=swap&font-display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- GSAP Core & Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+</head>
+<body>
+
+    <!-- ИНТЕРАКТИВНЫЙ ФОН -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- 1. ПРЕЛОАДЕР -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-bg" id="preloader-bg"></div>
+        <div class="counter" id="counter">0%</div>
+    </div>
+
+    <!-- Тонкий шум (Оптимизированный GPU) -->
+    <div class="noise-overlay"></div>
+    
+    <!-- КУРСОР С КОЛЬЦОМ ПРОГРЕССА -->
+    <div class="cursor-wrapper" id="cursor">
+        <div class="cursor-dot" id="cursor-dot"></div>
+        <svg class="cursor-ring">
+            <circle cx="25" cy="25" r="24"></circle>
+            <circle cx="25" cy="25" r="24" class="progress-circle" id="scroll-progress"></circle>
+        </svg>
+    </div>
+
+    <!-- НАВИГАЦИЯ -->
+    <header>
+        <a href="#" class="logo magnetic" data-strength="20">MS<span>Design</span></a>
+        
+        <!-- Кнопка бургер-меню для мобильных -->
+        <button class="burger-btn" id="burger-btn" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="nav-container" id="nav-container">
+            <nav>
+                <div class="nav-link-wrapper magnetic" data-strength="15">
+                    <a href="#about" class="js-nav-link scramble" data-i18n="nav-about">About</a>
+                </div>
+                <div class="nav-link-wrapper magnetic" data-strength="15">
+                    <a href="#portfolio" class="js-nav-link scramble" data-i18n="nav-projects">Projects</a>
+                </div>
+                <div class="nav-link-wrapper magnetic" data-strength="15">
+                    <a href="#contact" class="js-nav-link scramble" data-i18n="nav-contact">Contact</a>
+                </div>
+            </nav>
+            
+            <!-- Переключатель языков -->
+            <div class="lang-switcher magnetic" data-strength="10">
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ua">UA</button>
+                <button class="lang-btn" data-lang="es">ES</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO СЕКЦИЯ -->
+    <main>
+        <section class="hero">
+            <h1 class="hero-title">
+                <div data-i18n="hero-t1">Bespoke</div>
+                <div class="outline" data-i18n="hero-t2">Conceptual</div>
+                <div data-i18n="hero-t3">Design.</div>
+            </h1>
+            <p class="hero-subtitle" data-i18n="hero-sub">Architecture of premium visual worlds and digital experiences for brands that dictate their own rules.</p>
+        </section>
+
+        <!-- ABOUT СЕКЦИЯ -->
+        <section class="about" id="about">
+            <h2 class="about-title gs-reveal" data-i18n="about-title">Philosophy<br>of Dominance</h2>
+            <p class="about-text gs-reveal" data-i18n="about-text">We don't just draw pictures. We design visual codes of superiority. <strong>MS Design</strong> creates elite design that transmits unattainable status, causing awe and desire in the audience. Every detail is a strategic step towards the absolute leadership of the brand in its niche.</p>
+        </section>
+
+        <!-- ПОРТФОЛИО -->
+        <section class="portfolio" id="portfolio">
+            <div class="grid">
+                <!-- Проект 1 -->
+                <a href="#contact" class="project-card gs-reveal">
+                    <div class="project-img-wrapper par-container">
+                        <div class="project-img-placeholder par-image">MSD</div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-name scramble">Luxury Identity</h3>
+                        <p class="project-category" data-i18n="project-cat-1">Branding</p>
+                    </div>
+                </a>
+                
+                <!-- Проект 2 -->
+                <a href="#contact" class="project-card gs-reveal">
+                    <div class="project-img-wrapper par-container">
+                        <div class="project-img-placeholder par-image">MSD</div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-name scramble">High-End Editorial</h3>
+                        <p class="project-category" data-i18n="project-cat-2">Fashion Book</p>
+                    </div>
+                </a>
+                
+                <!-- Проект 3 -->
+                <a href="#contact" class="project-card gs-reveal">
+                    <div class="project-img-wrapper par-container">
+                        <div class="project-img-placeholder par-image">MSD</div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-name scramble">Immersive Web</h3>
+                        <p class="project-category" data-i18n="project-cat-3">UI/UX Art</p>
+                    </div>
+                </a>
+                
+                <!-- Проект 4 -->
+                <a href="#contact" class="project-card gs-reveal">
+                    <div class="project-img-wrapper par-container">
+                        <div class="project-img-placeholder par-image">MSD</div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-name scramble">Premium Packaging</h3>
+                        <p class="project-category" data-i18n="project-cat-4">Packaging</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- СЕКЦИЯ КОНТАКТОВ С ФОРМОЙ -->
+        <section class="contact-section" id="contact">
+            <div class="contact-info gs-reveal">
+                <h2 class="contact-title" data-i18n="contact-title">Let's discuss<br>your project</h2>
+                <div class="contact-details">
+                    <div class="contact-detail-item">EMAIL: <a href="mailto:info@msd-arquitectos.com">info@msd-arquitectos.com</a></div>
+                    <div class="contact-detail-item">TEL: <a href="tel:+34952906080">+34 952 90 60 80</a></div>
+                    <div class="contact-detail-item">LOCATION: Puerto Banús, Marbella, Spain</div>
+                </div>
+            </div>
+            
+            <div class="contact-form-container gs-reveal">
+                <!-- Форма обратной связи -->
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="client-name" class="form-input" required placeholder=" ">
+                        <label for="client-name" class="form-label" data-i18n="contact-label-name">Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="client-contact" class="form-input" required placeholder=" ">
+                        <label for="client-contact" class="form-label" data-i18n="contact-label-conn">Contact (Email / TG / Phone)</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="client-message" class="form-input" rows="1" placeholder=" "></textarea>
+                        <label for="client-message" class="form-label" data-i18n="contact-label-msg">Project details / Message</label>
+                    </div>
+                    <button type="submit" class="form-submit-btn magnetic" data-strength="20" id="form-submit-btn" data-i18n="contact-btn">Send Request</button>
+                </form>
+
+                <!-- Оверлей успешной отправки -->
+                <div class="form-success-wrapper" id="form-success-wrapper">
+                    <div class="success-icon">
+                        <svg width="36" height="28" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 14L13 24L32 4" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="success-title" data-i18n="success-title">Thank you!</h3>
+                    <p class="success-desc" data-i18n="success-desc">Your message has been sent successfully. We will get in touch with you shortly.</p>
+                    <button class="form-submit-btn magnetic" data-strength="15" id="close-success-btn" style="margin-top: 30px; padding: 15px 40px; font-size: 0.9rem;" data-i18n="success-back">Close</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ФУТЕР -->
+    <footer>
+        <h2 class="cta-title gs-reveal" data-i18n="cta-title">Let's create a<br>cult project</h2>
+        <div class="mag-button-wrapper magnetic" data-strength="60">
+            <a href="https://www.instagram.com/msdesign_es/" target="_blank" class="instagram-btn">Instagram Direct</a>
+        </div>
+        <div class="footer-bottom">
+            <div data-i18n="footer-copy">&copy; 2026 MS DESIGN. Shaping the future of visuals.</div>
+            <a href="#" class="back-to-top" data-i18n="back-to-top">Back to top</a>
+            <div data-i18n="footer-right">Designed for Excellence.</div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
