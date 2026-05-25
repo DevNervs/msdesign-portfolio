@@ -20,6 +20,9 @@ const translations = {
         "project-cat-2": "Fashion Book",
         "project-cat-3": "UI/UX Art",
         "project-cat-4": "Packaging",
+        "project-cat-5": "Videos",
+        "project-cat-6": "Animation",
+        "project-cat-7": "Motion",
         "contact-title": "Let's discuss<br>your project",
         "contact-label-name": "Name",
         "contact-label-conn": "Contact (Email / TG / Phone)",
@@ -49,6 +52,9 @@ const translations = {
         "project-cat-2": "Дизайн Книг",
         "project-cat-3": "UI/UX Арт",
         "project-cat-4": "Упаковка",
+        "project-cat-5": "Відео",
+        "project-cat-6": "Анімація",
+        "project-cat-7": "Моушн",
         "contact-title": "Обговорімо<br>ваш проект",
         "contact-label-name": "Ваше Ім'я",
         "contact-label-conn": "Зв'язок (Email / TG / Телефон)",
@@ -78,6 +84,9 @@ const translations = {
         "project-cat-2": "Editorial",
         "project-cat-3": "Arte UI/UX",
         "project-cat-4": "Embalaje",
+        "project-cat-5": "Vídeos",
+        "project-cat-6": "Animación",
+        "project-cat-7": "Movimiento",
         "contact-title": "Hablemos de<br>tu proyecto",
         "contact-label-name": "Nombre",
         "contact-label-conn": "Contacto (Email / TG / Teléfono)",
@@ -425,7 +434,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const cursor = document.getElementById('cursor');
         const cursorDot = document.getElementById('cursor-dot');
         const scrollProgress = document.getElementById('scroll-progress');
-        const circumference = 150;
+        const circumference = 207;
 
         if (cursor && cursorDot && scrollProgress) {
             gsap.set(cursor, { xPercent: -50, yPercent: -50 });
