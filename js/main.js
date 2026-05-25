@@ -190,12 +190,29 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
         { x: 0.5, y: 0.8, radius: 0.45, speedX: 0.3, speedY: 0.2, phaseX: 3.0, phaseY: 2.0 }
     ];
 
+    // Симуляция 3D-частиц (космической пыли)
+    const particles = [];
+    const particleCount = 120;
+    
+    // Создаем частицы с координатами, размером и скоростью
+    for (let i = 0; i < particleCount; i++) {
+        particles.push({
+            x: Math.random(),
+            y: Math.random(),
+            z: Math.random() * 0.8 + 0.2, // Depth factor for 3D parallax
+            size: Math.random() * 1.5 + 0.5,
+            speedY: Math.random() * 0.0003 + 0.0001,
+            phase: Math.random() * Math.PI * 2
+        });
+    }
+
     function drawFrame() {
         time += 0.003;
         ctx.clearRect(0, 0, width, height);
 
         const palette = getCurrentPalette();
 
+        // 1. РИСУЕМ ГРАДИЕНТНЫЕ ОРБЫ ФОНА
         orbs.forEach((orb, i) => {
             // Плавное движение по синусоиде + реакция на мышь
             const offsetX = Math.sin(time * orb.speedX + orb.phaseX) * 0.15;
@@ -216,6 +233,35 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, width, height);
+        });
+
+        // 2. РИСУЕМ И ОБНОВЛЯЕМ ПАРЯЩИЕ ЧАСТИЦЫ ПЫЛИ
+        particles.forEach(p => {
+            // Движение вверх + параллакс-отклонение от движения мыши
+            const mouseInfluenceX = window.innerWidth > 992 ? (mouseX - 0.5) * 0.05 * p.z : 0;
+            const mouseInfluenceY = window.innerWidth > 992 ? (mouseY - 0.5) * 0.05 * p.z : 0;
+            
+            // Увеличение скорости сдувания вверх в зависимости от скролла
+            const scrollInfluenceY = scrollProgress * 0.0025;
+            
+            p.y -= (p.speedY + scrollInfluenceY) * p.z;
+            
+            // Легкие синусоидальные покачивания
+            const px = (p.x + mouseInfluenceX + Math.sin(time + p.phase) * 0.015) * width;
+            const py = (p.y - mouseInfluenceY) * height;
+            
+            // Если частица вылетает за верхнюю границу экрана, возвращаем ее вниз
+            if (p.y < -0.05) {
+                p.y = 1.05;
+                p.x = Math.random();
+            }
+            
+            // Рисуем пылинку (с мягким затуханием у краев экрана)
+            const opacity = (1 - (p.y < 0.15 ? p.y / 0.15 : 0)) * (1 - (p.y > 0.85 ? (p.y - 0.85) / 0.15 : 0)) * 0.35 * p.z;
+            ctx.beginPath();
+            ctx.arc(px, py, p.size * p.z, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+            ctx.fill();
         });
 
         requestAnimationFrame(drawFrame);
@@ -665,6 +711,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Появление блоков
     document.querySelectorAll('.gs-reveal').forEach(elem => {
+        // Если это заголовок с маской, не делаем простой сдвиг, чтобы не конфликтовать
+        if (elem.classList.contains('text-reveal-mask')) return;
+        
         gsap.from(elem, { 
             y: 50, 
             opacity: 0, 
@@ -677,6 +726,69 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+    // Кинетическое раскрытие заголовков из-под маски
+    document.querySelectorAll('.text-reveal-mask').forEach(elem => {
+        ScrollTrigger.create({
+            trigger: elem,
+            start: "top 88%",
+            once: true,
+            onEnter: () => {
+                elem.classList.add('revealed');
+            }
+        });
+    });
+
+    // --- СИНХРОНИЗАЦИЯ БОКОВОГО ТАЙМЛАЙНА СКРОЛЛА ---
+    if (lenis && window.innerWidth > 992) {
+        const fillLine = document.querySelector('.progress-line-fill');
+        lenis.on('scroll', (e) => {
+            const scrollPercent = e.scroll / (e.limit || 1);
+            if (fillLine) {
+                fillLine.style.height = `${scrollPercent * 100}%`;
+            }
+        });
+    }
+
+    // Синхронизация активных точек навигации при скролле
+    if (window.innerWidth > 992) {
+        document.querySelectorAll('.nav-dot').forEach(dot => {
+            const targetId = dot.getAttribute('data-target');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                ScrollTrigger.create({
+                    trigger: targetSection,
+                    start: "top 45%",
+                    end: "bottom 45%",
+                    onEnter: () => setActiveDot(dot),
+                    onEnterBack: () => setActiveDot(dot)
+                });
+            }
+            
+            // Плавный скролл при клике на точку таймлайна
+            dot.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (lenis) {
+                    lenis.scrollTo(targetId, {
+                        duration: 1.5,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                    });
+                } else {
+                    gsap.to(window, { 
+                        scrollTo: { y: targetId }, 
+                        duration: 1.5, 
+                        ease: "power4.inOut" 
+                    });
+                }
+            });
+        });
+
+        function setActiveDot(activeDot) {
+            document.querySelectorAll('.nav-dot').forEach(dot => dot.classList.remove('active'));
+            activeDot.classList.add('active');
+        }
+    }
 
     // Магнитные кнопки (Только для ПК с троттлингом)
     if (window.innerWidth > 992) {

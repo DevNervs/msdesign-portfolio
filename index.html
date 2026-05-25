@@ -57,6 +57,18 @@
     <!-- Тонкий шум (Оптимизированный GPU) -->
     <div class="noise-overlay"></div>
     
+    <!-- БОКОВОЙ ПРОГРЕСС-БАР -->
+    <div class="side-progress-bar" id="side-progress-bar">
+        <div class="progress-line-fill"></div>
+        <div class="nav-dots">
+            <a href="#about" class="nav-dot active" data-target="#about"><span class="dot-label">Philosophy</span></a>
+            <a href="#videos" class="nav-dot" data-target="#videos"><span class="dot-label">Videos</span></a>
+            <a href="#animation" class="nav-dot" data-target="#animation"><span class="dot-label">Animation</span></a>
+            <a href="#motion" class="nav-dot" data-target="#motion"><span class="dot-label">Motion</span></a>
+            <a href="#contact" class="nav-dot" data-target="#contact"><span class="dot-label">Contact</span></a>
+        </div>
+    </div>
+    
     <!-- КУРСОР С КОЛЬЦОМ ПРОГРЕССА -->
     <div class="cursor-wrapper" id="cursor">
         <div class="cursor-dot" id="cursor-dot"></div>
@@ -127,7 +139,9 @@
         <!-- ABOUT СЕКЦИЯ -->
         <section class="about" id="about">
             <div class="section-watermark">DESIGN</div>
-            <h2 class="about-title gs-reveal" data-i18n="about-title">Philosophy<br>of Dominance</h2>
+            <h2 class="about-title gs-reveal text-reveal-mask">
+                <span class="text-reveal-line" data-i18n="about-title">Philosophy<br>of Dominance</span>
+            </h2>
             <p class="about-text gs-reveal" data-i18n="about-text">We don't just draw pictures. We design visual codes of superiority. <strong>MS Design</strong> creates elite design that transmits unattainable status, causing awe and desire in the audience. Every detail is a strategic step towards the absolute leadership of the brand in its niche.</p>
         </section>
 
@@ -160,7 +174,7 @@
         <section class="showcase-section" id="videos">
             <div class="section-watermark">FILM</div>
             <div class="showcase-header gs-reveal">
-                <h2 class="showcase-title" data-i18n="videos-title">Videos</h2>
+                <h2 class="showcase-title text-reveal-mask"><span class="text-reveal-line" data-i18n="videos-title">Videos</span></h2>
                 <p class="showcase-desc" data-i18n="videos-desc">Cinematic storytelling that captures the essence of luxury brands. High-end production with meticulous attention to every frame.</p>
             </div>
             <div class="showcase-grid">
@@ -223,7 +237,7 @@
         <section class="showcase-section" id="animation">
             <div class="section-watermark">ANIMATE</div>
             <div class="showcase-header gs-reveal">
-                <h2 class="showcase-title" data-i18n="animation-title">Animation</h2>
+                <h2 class="showcase-title text-reveal-mask"><span class="text-reveal-line" data-i18n="animation-title">Animation</span></h2>
                 <p class="showcase-desc" data-i18n="animation-desc">Fluid visual narratives that bring ideas to life. From UI micro-interactions to full-scale animated experiences.</p>
             </div>
             <div class="showcase-grid">
@@ -283,7 +297,7 @@
         <section class="showcase-section" id="motion">
             <div class="section-watermark">MOTION</div>
             <div class="showcase-header gs-reveal">
-                <h2 class="showcase-title" data-i18n="motion-title">Motion</h2>
+                <h2 class="showcase-title text-reveal-mask"><span class="text-reveal-line" data-i18n="motion-title">Motion</span></h2>
                 <p class="showcase-desc" data-i18n="motion-desc">Dynamic motion graphics that transform static visuals into captivating kinetic experiences. Titles, transitions, and visual effects.</p>
             </div>
             <div class="showcase-grid">
@@ -340,7 +354,7 @@
         <!-- СЕКЦИЯ КОНТАКТОВ С ФОРМОЙ -->
         <section class="contact-section" id="contact">
             <div class="contact-info gs-reveal">
-                <h2 class="contact-title" data-i18n="contact-title">Let's discuss<br>your project</h2>
+                <h2 class="contact-title text-reveal-mask"><span class="text-reveal-line" data-i18n="contact-title">Let's discuss<br>your project</span></h2>
                 <div class="contact-details">
                     <div class="contact-detail-item">EMAIL: <a href="mailto:info@msd-arquitectos.com">info@msd-arquitectos.com</a></div>
                     <div class="contact-detail-item">TEL: <a href="tel:+34952906080">+34 952 90 60 80</a></div>
@@ -383,7 +397,7 @@
 
     <!-- ФУТЕР -->
     <footer>
-        <h2 class="cta-title gs-reveal" data-i18n="cta-title">Let's create a<br>cult project</h2>
+        <h2 class="cta-title gs-reveal text-reveal-mask"><span class="text-reveal-line" data-i18n="cta-title">Let's create a<br>cult project</span></h2>
         <div class="mag-button-wrapper magnetic" data-strength="60">
             <a href="https://www.instagram.com/msdesign_es/" target="_blank" class="instagram-btn">Instagram Direct</a>
         </div>
