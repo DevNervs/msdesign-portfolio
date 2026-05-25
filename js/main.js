@@ -23,6 +23,9 @@ const translations = {
         "project-cat-2": "Fashion Book",
         "project-cat-3": "UI/UX Art",
         "project-cat-4": "Packaging",
+        "stat-years": "Years of Excellence",
+        "stat-projects": "Projects Delivered",
+        "stat-clients": "Happy Clients",
         "videos-title": "Videos",
         "videos-desc": "Cinematic storytelling that captures the essence of luxury brands. High-end production with meticulous attention to every frame.",
         "animation-title": "Animation",
@@ -61,6 +64,9 @@ const translations = {
         "project-cat-2": "Дизайн Книг",
         "project-cat-3": "UI/UX Арт",
         "project-cat-4": "Упаковка",
+        "stat-years": "Років Досвіду",
+        "stat-projects": "Проектів Завершено",
+        "stat-clients": "Задоволених Клієнтів",
         "videos-title": "Відео",
         "videos-desc": "Кінематографічний сторітелінг, що передає сутність люксових брендів. Преміальне виробництво з увагою до кожного кадру.",
         "animation-title": "Анімація",
@@ -99,6 +105,9 @@ const translations = {
         "project-cat-2": "Editorial",
         "project-cat-3": "Arte UI/UX",
         "project-cat-4": "Embalaje",
+        "stat-years": "Años de Excelencia",
+        "stat-projects": "Proyectos Entregados",
+        "stat-clients": "Clientes Satisfechos",
         "videos-title": "Vídeos",
         "videos-desc": "Narrativa cinematográfica que captura la esencia de las marcas de lujo. Producción de alta gama con atención meticulosa a cada fotograma.",
         "animation-title": "Animación",
@@ -684,4 +693,25 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
+
+    // АНИМИРОВАННЫЕ СЧЁТЧИКИ СТАТИСТИКИ
+    const statNumbers = document.querySelectorAll(".stat-number");
+    statNumbers.forEach(num => {
+        const target = parseInt(num.getAttribute("data-target"), 10);
+        ScrollTrigger.create({
+            trigger: num,
+            start: "top 85%",
+            once: true,
+            onEnter: () => {
+                gsap.to({ val: 0 }, {
+                    val: target,
+                    duration: 2,
+                    ease: "power2.out",
+                    onUpdate: function() {
+                        num.textContent = Math.floor(this.targets()[0].val);
+                    }
+                });
+            }
+        });
+    });
 });
