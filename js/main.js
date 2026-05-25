@@ -1,8 +1,8 @@
 // --- КОНФИГУРАЦИЯ TELEGRAM БОТА ---
 // Заполните эти данные для приема заявок от клиентов прямо в ваш Telegram.
 // Инструкция по получению токена бота и Chat ID находится в планах и ответах ассистента.
-const TELEGRAM_BOT_TOKEN = "8853068851:AAG1lknyjVVGipFwVFfH7zOQYyWrvzQExvs";
-const TELEGRAM_CHAT_ID = "YOUR_CHAT_ID_HERE";
+const TELEGRAM_BOT_TOKEN = ""; // Замаскировано для безопасности каркаса
+const TELEGRAM_CHAT_ID = ""; // Укажите ваш Chat ID при продакшн развертывании
 
 // --- СЛОВАРЬ ПЕРЕВОДОВ (EN / UA / ES) ---
 const translations = {
@@ -12,11 +12,11 @@ const translations = {
         "nav-animation": "Animation",
         "nav-motion": "Motion",
         "nav-contact": "Contact",
-        "hero-t1": "Bespoke",
+        "hero-t1": "<span class='serif-italic'>Bespoke</span>",
         "hero-t2": "Conceptual",
         "hero-t3": "Design.",
         "hero-sub": "Architecture of premium visual worlds and digital experiences for brands that dictate their own rules.",
-        "about-title": "Philosophy<br>of Dominance",
+        "about-title": "Philosophy<br>of <span class='serif-italic'>Dominance</span>",
         "about-text": "We don't just draw pictures. We design visual codes of superiority. <strong>MS Design</strong> creates elite design that transmits unattainable status, causing awe and desire in the audience. Every detail is a strategic step towards the absolute leadership of the brand in its niche.",
         "stat-years": "Years of Excellence",
         "stat-projects": "Projects Delivered",
@@ -27,7 +27,7 @@ const translations = {
         "animation-desc": "Fluid visual narratives that bring ideas to life. From UI micro-interactions to full-scale animated experiences.",
         "motion-title": "Motion",
         "motion-desc": "Dynamic motion graphics that transform static visuals into captivating kinetic experiences. Titles, transitions, and visual effects.",
-        "contact-title": "Let's discuss<br>your project",
+        "contact-title": "Let's discuss<br>your <span class='serif-italic'>project</span>",
         "contact-label-name": "Name",
         "contact-label-conn": "Contact (Email / TG / Phone)",
         "contact-label-msg": "Project details / Message",
@@ -36,7 +36,7 @@ const translations = {
         "success-title": "Thank you!",
         "success-desc": "Your message has been sent successfully. We will get in touch with you shortly.",
         "success-back": "Close",
-        "cta-title": "Let's create a<br>cult project",
+        "cta-title": "Let's create a<br><span class='serif-italic'>cult project</span>",
         "footer-copy": "© 2026 MS DESIGN. Shaping the future of visuals.",
         "footer-right": "Designed for Excellence.",
         "back-to-top": "Back to top",
@@ -48,11 +48,11 @@ const translations = {
         "nav-animation": "Анімація",
         "nav-motion": "Моушн",
         "nav-contact": "Контакти",
-        "hero-t1": "Елітний",
+        "hero-t1": "<span class='serif-italic'>Елітний</span>",
         "hero-t2": "Концепт",
         "hero-t3": "Дизайн.",
         "hero-sub": "Архітектура преміальних візуальних світів та цифрового досвіду для брендів, які диктують власні правила.",
-        "about-title": "Філософія<br>Домінування",
+        "about-title": "Філософія<br><span class='serif-italic'>Домінування</span>",
         "about-text": "Ми не просто малюємо картинки. Ми проектуємо візуальні коди переваги. <strong>MS Design</strong> створює елітарний дизайн, який транслює недосяжний статус, викликаючи в аудиторії трепет та бажання володіти. Кожна деталь — це стратегічний крок до абсолютного лідерства бренду в його ніші.",
         "stat-years": "Років Досвіду",
         "stat-projects": "Проектів Завершено",
@@ -63,7 +63,7 @@ const translations = {
         "animation-desc": "Плавні візуальні наративи, що оживляють ідеї. Від мікро-взаємодій інтерфейсу до масштабних анімаційних проектів.",
         "motion-title": "Моушн",
         "motion-desc": "Динамічна моушн-графіка, що перетворює статичні візуали на захоплюючі кінетичні переживання. Тайтли, переходи, візуальні ефекти.",
-        "contact-title": "Обговорімо<br>ваш проект",
+        "contact-title": "Обговорімо<br>ваш <span class='serif-italic'>проект</span>",
         "contact-label-name": "Ваше Ім'я",
         "contact-label-conn": "Зв'язок (Email / TG / Телефон)",
         "contact-label-msg": "Про проект / Побажання",
@@ -72,7 +72,7 @@ const translations = {
         "success-title": "Дякуємо!",
         "success-desc": "Ваше повідомлення успішно надіслано. Ми зв'яжемося з вами найближчим часом.",
         "success-back": "Закрити",
-        "cta-title": "Давайте створимо<br>культовий проект",
+        "cta-title": "Давайте створимо<br><span class='serif-italic'>культовий проект</span>",
         "footer-copy": "© 2026 MS DESIGN. Створюємо майбутнє візуалу.",
         "footer-right": "Створено для досконалості.",
         "back-to-top": "Вгору",
@@ -84,11 +84,11 @@ const translations = {
         "nav-animation": "Animación",
         "nav-motion": "Movimiento",
         "nav-contact": "Contacto",
-        "hero-t1": "Exclusivo",
+        "hero-t1": "<span class='serif-italic'>Exclusivo</span>",
         "hero-t2": "Concepto",
         "hero-t3": "Diseño.",
         "hero-sub": "Arquitectura de mundos visuales premium y experiencias digitales para marcas que dictan sus propias reglas.",
-        "about-title": "Filosofía de<br>Dominación",
+        "about-title": "Filosofía de<br><span class='serif-italic'>Dominación</span>",
         "about-text": "No solo dibujamos imágenes. Diseñamos códigos visuales de superioridad. <strong>MS Design</strong> crea un diseño de élite que transmite un estatus inalcanzable, provocando asombro y deseo en la audiencia. Cada detalle es un paso estratégico hacia el liderazgo absoluto de la marca en su nicho.",
         "stat-years": "Años de Excelencia",
         "stat-projects": "Proyectos Entregados",
@@ -99,7 +99,7 @@ const translations = {
         "animation-desc": "Narrativas visuales fluidas que dan vida a las ideas. Desde micro-interacciones UI hasta experiencias animadas a gran escala.",
         "motion-title": "Movimiento",
         "motion-desc": "Gráficos en movimiento dinámicos que transforman los visuales estáticos en experiencias cinéticas cautivadoras. Títulos, transiciones y efectos visuales.",
-        "contact-title": "Hablemos de<br>tu proyecto",
+        "contact-title": "Hablemos de<br>tu <span class='serif-italic'>proyecto</span>",
         "contact-label-name": "Nombre",
         "contact-label-conn": "Contacto (Email / TG / Teléfono)",
         "contact-label-msg": "Detalles del proyecto",
@@ -441,6 +441,132 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    // --- ЛОГИКА ШЕЛКОВИСТОГО СКРОЛЛА (LENIS) ---
+    let lenis;
+    if (window.innerWidth > 992) {
+        lenis = new Lenis({
+            duration: 1.4,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Luxurious elastic scroll
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1.0,
+            smoothTouch: false
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Синхронизация Lenis и ScrollTrigger
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+    }
+
+    // --- ЗВУКОВОЙ ДИЗАЙН (СИНТЕЗ КЛИКОВ ЧЕРЕЗ WEB AUDIO API) ---
+    let isAudioMuted = true;
+    let audioCtx = null;
+
+    function playMicroClick(frequency = 800, duration = 0.04, type = "sine", volume = 0.03) {
+        if (isAudioMuted) return;
+        try {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = type;
+            osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+            gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        } catch (e) {
+            console.warn("Audio click playback failed", e);
+        }
+    }
+
+    // Инициализация Sound Toggle кнопки
+    const soundToggle = document.getElementById("sound-toggle");
+    if (soundToggle) {
+        soundToggle.addEventListener("click", () => {
+            isAudioMuted = !isAudioMuted;
+            soundToggle.classList.toggle("playing", !isAudioMuted);
+            if (!isAudioMuted) {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                playMicroClick(500, 0.08, "triangle", 0.05);
+            }
+        });
+    }
+
+    // --- АДАПТИВНЫЙ СКРОЛЛ ХЭДЕРА ---
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (header) {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        }
+    });
+
+    // --- ИНТЕРАКТИВНЫЙ 3D TILT И СВЕТОВОЙ БЛИК КАРТОЧЕК ---
+    if (window.innerWidth > 992) {
+        document.querySelectorAll('[data-tilt]').forEach(card => {
+            const glow = card.querySelector('.showcase-glow');
+            
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Расчет углов наклона (-8 до 8 градусов)
+                const xc = rect.width / 2;
+                const yc = rect.height / 2;
+                const angleX = -(y - yc) / (rect.height / 8);
+                const angleY = (x - xc) / (rect.width / 8);
+                
+                // Положение светового блика
+                if (glow) {
+                    const glowX = (x / rect.width) * 100;
+                    const glowY = (y / rect.height) * 100;
+                    glow.style.setProperty('--mouse-x', `${glowX}%`);
+                    glow.style.setProperty('--mouse-y', `${glowY}%`);
+                }
+                
+                gsap.to(card, {
+                    rotationX: angleX,
+                    rotationY: angleY,
+                    transformPerspective: 800,
+                    ease: "power2.out",
+                    duration: 0.5,
+                    overwrite: "auto"
+                });
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    rotationX: 0,
+                    rotationY: 0,
+                    ease: "power3.out",
+                    duration: 0.8,
+                    overwrite: "auto"
+                });
+            });
+        });
+    }
+
     // --- ЛОГИКА КУРСОРОВ И ТРОТТЛИНГ ---
     if (window.innerWidth > 992) {
         const cursor = document.getElementById('cursor');
@@ -453,14 +579,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let mouseX = 0, mouseY = 0;
             
-            // Использование requestAnimationFrame для троттлинга перемещения курсора
             window.addEventListener('mousemove', e => {
                 mouseX = e.clientX;
                 mouseY = e.clientY;
             });
 
             gsap.ticker.add(() => {
-                gsap.to(cursor, { x: mouseX, y: mouseY, duration: 0.15, ease: "power2.out", overwrite: "auto" });
+                gsap.to(cursor, { x: mouseX, y: mouseY, duration: 0.12, ease: "power2.out", overwrite: "auto" });
             });
 
             window.addEventListener('scroll', () => {
@@ -471,10 +596,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 scrollProgress.style.strokeDashoffset = drawLength;
             });
 
-            // Наведение на ссылки и кнопки для увеличения курсора
-            document.querySelectorAll('a, button, input, textarea, .lang-btn').forEach(interactiveEl => {
-                interactiveEl.addEventListener('mouseenter', () => gsap.to(cursorDot, { scale: 4, duration: 0.3 }));
-                interactiveEl.addEventListener('mouseleave', () => gsap.to(cursorDot, { scale: 1, duration: 0.3 }));
+            // Наведение на ссылки и кнопки для увеличения и звукового клика
+            document.querySelectorAll('a, button, input, textarea, .lang-btn, .sound-toggle, .showcase-item').forEach(interactiveEl => {
+                interactiveEl.addEventListener('mouseenter', () => {
+                    gsap.to(cursorDot, { scale: 3.5, duration: 0.3 });
+                    playMicroClick(1000, 0.015, "sine", 0.02); // Ультра-премиальный нежный клик при наведении
+                });
+                interactiveEl.addEventListener('mouseleave', () => {
+                    gsap.to(cursorDot, { scale: 1, duration: 0.3 });
+                });
+                interactiveEl.addEventListener('click', () => {
+                    playMicroClick(650, 0.05, "triangle", 0.04); // Тактильный клик при нажатии
+                });
             });
         }
     }
@@ -566,11 +699,18 @@ document.addEventListener("DOMContentLoaded", () => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            gsap.to(window, { 
-                scrollTo: { y: targetId, offsetY: 0 }, 
-                duration: 1.5, 
-                ease: "power4.inOut" 
-            });
+            if (lenis) {
+                lenis.scrollTo(targetId, {
+                    duration: 1.5,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                });
+            } else {
+                gsap.to(window, { 
+                    scrollTo: { y: targetId, offsetY: 0 }, 
+                    duration: 1.5, 
+                    ease: "power4.inOut" 
+                });
+            }
         });
     });
 
@@ -578,11 +718,18 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.back-to-top').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            gsap.to(window, { 
-                scrollTo: { y: 0 }, 
-                duration: 1.5, 
-                ease: "power4.inOut" 
-            });
+            if (lenis) {
+                lenis.scrollTo(0, {
+                    duration: 1.5,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                });
+            } else {
+                gsap.to(window, { 
+                    scrollTo: { y: 0 }, 
+                    duration: 1.5, 
+                    ease: "power4.inOut" 
+                });
+            }
         });
     });
 
