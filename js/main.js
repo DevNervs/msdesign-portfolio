@@ -515,7 +515,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --- ЗВУКОВОЙ ДИЗАЙН (СИНТЕЗ КЛИКОВ ЧЕРЕЗ WEB AUDIO API) ---
-    let isAudioMuted = true;
+    let isAudioMuted = false;
     let audioCtx = null;
 
     function playMicroClick(frequency = 800, duration = 0.04, type = "sine", volume = 0.03) {
@@ -547,6 +547,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Инициализация Sound Toggle кнопки
     const soundToggle = document.getElementById("sound-toggle");
     if (soundToggle) {
+        // Включаем визуальный эквалайзер на старте, так как звук включен по умолчанию
+        soundToggle.classList.toggle("playing", !isAudioMuted);
+        
         soundToggle.addEventListener("click", () => {
             isAudioMuted = !isAudioMuted;
             soundToggle.classList.toggle("playing", !isAudioMuted);
