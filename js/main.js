@@ -968,6 +968,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeBtn = document.getElementById("video-modal-close");
 
     if (videoModal && modalVideo && closeBtn) {
+        const container = videoModal.querySelector('.video-modal-container');
+
+        // Динамическая адаптация пропорций контейнера под соотношение сторон видео
+        modalVideo.addEventListener('loadedmetadata', () => {
+            const videoWidth = modalVideo.videoWidth;
+            const videoHeight = modalVideo.videoHeight;
+            
+            if (container && videoWidth && videoHeight) {
+                if (videoHeight > videoWidth) {
+                    // Вертикальный формат (9:16)
+                    container.style.aspectRatio = "9 / 16";
+                    container.style.width = "auto";
+                    container.style.height = "80vh";
+                    container.style.maxWidth = "calc(80vh * 9 / 16)";
+                } else {
+                    // Горизонтальный формат (16:9)
+                    container.style.aspectRatio = "16 / 9";
+                    container.style.width = "90%";
+                    container.style.height = "auto";
+                    container.style.maxWidth = "1200px";
+                }
+            }
+        });
+
         document.querySelectorAll('.showcase-item').forEach(item => {
             const videoEl = item.querySelector('.showcase-video');
             if (videoEl) {
@@ -1008,6 +1032,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     videoModal.style.display = "none";
                     modalVideo.pause();
                     modalVideo.src = "";
+                    // Сбрасываем динамические стили контейнера
+                    if (container) {
+                        container.style.aspectRatio = "";
+                        container.style.width = "";
+                        container.style.height = "";
+                        container.style.maxWidth = "";
+                    }
                     if (typeof lenis !== 'undefined' && lenis) lenis.start(); // Запускаем скролл обратно
                 }
             });
