@@ -1055,7 +1055,7 @@ footer {
     font-family: var(--font-heading); 
     font-size: 8vw; 
     text-transform: uppercase; 
-    line-height: 0.85; 
+    line-height: 1.0; 
     margin-bottom: 80px; 
 }
 .mag-button-wrapper { 
@@ -1303,28 +1303,30 @@ footer {
 
     /* Навигационное мобильное меню (Полноэкранный оверлей) */
     .nav-container {
-        position: fixed;
-        top: 0;
+        position: fixed !important;
+        top: 0 !important;
         left: 0 !important;
         right: 0 !important;
+        bottom: 0 !important;
         width: 100vw !important;
-        height: 100vh !important;
-        background-color: #050505;
-        flex-direction: column;
-        justify-content: flex-start; /* Изменено с center для предотвращения обрезки верха при скролле */
-        align-items: center;
-        gap: 40px;
-        transform: translateY(-100%);
-        transition: transform 0.6s var(--ease-custom);
-        z-index: 95;
-        padding: 120px 5% 60px; /* Достаточный отступ сверху и снизу для скролла */
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        flex: none !important; /* Отключает флекс-влияние хедера, предотвращая сжатие в полоску */
+        height: 100dvh !important;
+        min-height: 100vh !important;
+        background-color: #050505 !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 40px !important;
+        transform: translateY(-100%) !important;
+        transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1) !important;
+        z-index: 9999 !important;
+        padding: 80px 5% 60px !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        display: flex !important;
     }
     
     .nav-container.active {
-        transform: translateY(0);
+        transform: translateY(0) !important;
     }
 
     nav { 
@@ -1575,6 +1577,13 @@ body.video-modal-open .video-modal-close * {
     cursor: pointer !important;
 }
 
+/* Скрываем кастомный cursor-wrapper через CSS когда открыта модалка */
+body.video-modal-open .cursor-wrapper {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
 .video-modal.active {
     display: flex;
     opacity: 1;
@@ -1607,6 +1616,55 @@ body.video-modal-open .video-modal-close * {
 
 .video-modal.active .video-modal-container {
     transform: scale(1);
+}
+
+/* Портретное видео (9:16) */
+.video-modal-container.portrait {
+    width: auto;
+    max-width: none;
+    height: 90dvh;
+    max-height: 90dvh;
+    aspect-ratio: 9 / 16;
+}
+
+/* Альбомное видео (16:9) — по умолчанию */
+.video-modal-container.landscape {
+    width: 90%;
+    max-width: 1200px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+}
+
+/* Мобильные экраны — портрет */
+@media (max-width: 768px) {
+    .video-modal-container.portrait {
+        height: 85dvh;
+        max-height: 85dvh;
+        width: auto;
+        aspect-ratio: 9 / 16;
+    }
+
+    .video-modal-container.landscape {
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 16 / 9;
+    }
+}
+
+/* Альбомный режим телефона — landscape video заполняет экран */
+@media (max-width: 992px) and (orientation: landscape) {
+    .video-modal-container.landscape {
+        width: auto;
+        height: 95dvh;
+        max-height: 95dvh;
+        aspect-ratio: 16 / 9;
+    }
+
+    .video-modal-container.portrait {
+        height: 95dvh;
+        width: auto;
+        aspect-ratio: 9 / 16;
+    }
 }
 
 .video-player-wrapper {

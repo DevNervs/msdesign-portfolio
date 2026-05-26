@@ -1000,6 +1000,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
                     modalVideo.src = videoEl.getAttribute('src');
+
+                    // Определяем ориентацию видео по атрибуту data-orientation
+                    const orientation = item.getAttribute('data-orientation') || 'landscape';
+                    const modalContainer = videoModal.querySelector('.video-modal-container');
+                    if (modalContainer) {
+                        modalContainer.classList.remove('portrait', 'landscape');
+                        modalContainer.classList.add(orientation);
+                    }
+
                     videoModal.style.display = "flex";
                     // Добавляем класс active для активации pointer-events
                     videoModal.classList.add('active');
