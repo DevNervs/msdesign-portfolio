@@ -976,6 +976,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     gsap.to(videoModal, { opacity: 1, duration: 0.4, ease: "power2.out" });
                     modalVideo.play();
                     if (typeof lenis !== 'undefined' && lenis) lenis.stop(); // Стопорим скролл
+                    
+                    // Скрываем кастомный курсор, так как в модалке нужен системный
+                    const customCursor = document.getElementById('cursor');
+                    if (customCursor) {
+                        gsap.to(customCursor, { opacity: 0, duration: 0.3 });
+                    }
                 });
             }
         });
@@ -992,6 +998,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (typeof lenis !== 'undefined' && lenis) lenis.start(); // Запускаем скролл обратно
                 }
             });
+            
+            // Возвращаем кастомный курсор
+            const customCursor = document.getElementById('cursor');
+            if (customCursor) {
+                gsap.to(customCursor, { opacity: 1, duration: 0.3 });
+            }
         };
 
         closeBtn.addEventListener('click', closeModal);
