@@ -1,0 +1,14 @@
+---
+description: Auto-deploy after every change
+alwaysApply: true
+---
+
+# Auto-deploy after changes
+
+After completing any code change, always commit and push to `origin/main`:
+
+1. `git add -A`
+2. `git commit -m "<conventional commit message>"`
+3. `git push origin main`
+
+Do this automatically after every edit — don't wait for the user to ask.
