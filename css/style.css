@@ -1523,9 +1523,17 @@ footer {
     pointer-events: none;
     transition: opacity 0.5s var(--ease-custom);
 }
-
-.video-modal, .video-modal * {
+body.video-modal-open,
+body.video-modal-open * {
     cursor: auto !important;
+}
+
+body.video-modal-open a,
+body.video-modal-open button,
+body.video-modal-open [role="button"],
+body.video-modal-open .video-modal-close,
+body.video-modal-open .video-modal-close * {
+    cursor: pointer !important;
 }
 
 .video-modal.active {

@@ -972,6 +972,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     e.preventDefault();
                     modalVideo.src = videoEl.getAttribute('src');
                     videoModal.style.display = "flex";
+                    // Добавляем класс на body для надежного включения системного курсора
+                    document.body.classList.add('video-modal-open');
+                    
                     // Плавное проявление
                     gsap.to(videoModal, { opacity: 1, duration: 0.4, ease: "power2.out" });
                     modalVideo.play();
@@ -987,6 +990,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const closeModal = () => {
+            // Удаляем класс с body для возвращения кастомного курсора
+            document.body.classList.remove('video-modal-open');
+
             gsap.to(videoModal, { 
                 opacity: 0, 
                 duration: 0.4, 
