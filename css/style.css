@@ -1094,7 +1094,25 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.05); 
     display: flex; 
     justify-content: space-between; 
+    align-items: center;
     color: var(--text-muted); 
+}
+
+/* Идеальное математическое центрирование кнопки "Back to top" на десктопе */
+@media (min-width: 993px) {
+    .footer-bottom > * {
+        flex: 1;
+    }
+    .footer-bottom > :first-child {
+        text-align: left;
+    }
+    .footer-bottom .back-to-top {
+        text-align: center;
+        display: block;
+    }
+    .footer-bottom > :last-child {
+        text-align: right;
+    }
 }
 
 /* Кнопка "Наверх" */
