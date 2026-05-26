@@ -972,6 +972,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     e.preventDefault();
                     modalVideo.src = videoEl.getAttribute('src');
                     videoModal.style.display = "flex";
+                    // Добавляем класс active для активации pointer-events
+                    videoModal.classList.add('active');
                     // Добавляем класс на body для надежного включения системного курсора
                     document.body.classList.add('video-modal-open');
                     
@@ -992,6 +994,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const closeModal = () => {
             // Удаляем класс с body для возвращения кастомного курсора
             document.body.classList.remove('video-modal-open');
+            // Удаляем класс active
+            videoModal.classList.remove('active');
 
             gsap.to(videoModal, { 
                 opacity: 0, 
