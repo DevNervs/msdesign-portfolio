@@ -880,8 +880,8 @@ document.addEventListener("DOMContentLoaded", () => {
                                 `<b>📝 Описание проекта:</b>\n${message || '—'}`;
 
             try {
-                // Если константы токена не дефолтные, отправляем в бота
-                if (TELEGRAM_BOT_TOKEN !== "YOUR_BOT_TOKEN_HERE" && TELEGRAM_CHAT_ID !== "YOUR_CHAT_ID_HERE") {
+                // Если константы токена заданы и не являются плейсхолдерами, отправляем в бота
+                if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID && TELEGRAM_BOT_TOKEN !== "YOUR_BOT_TOKEN_HERE" && TELEGRAM_CHAT_ID !== "YOUR_CHAT_ID_HERE") {
                     const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -977,17 +977,19 @@ document.addEventListener("DOMContentLoaded", () => {
             
             if (container && videoWidth && videoHeight) {
                 if (videoHeight > videoWidth) {
-                    // Вертикальный формат (9:16)
+                    // Вертикальный формат (9:16) — идеальное адаптивное вписывание
                     container.style.aspectRatio = "9 / 16";
-                    container.style.width = "auto";
-                    container.style.height = "80vh";
-                    container.style.maxWidth = "calc(80vh * 9 / 16)";
+                    container.style.width = "90%";
+                    container.style.maxWidth = "420px";
+                    container.style.height = "auto";
+                    container.style.maxHeight = "80vh";
                 } else {
-                    // Горизонтальный формат (16:9)
+                    // Горизонтальный формат (16:9) — стандарт
                     container.style.aspectRatio = "16 / 9";
                     container.style.width = "90%";
-                    container.style.height = "auto";
                     container.style.maxWidth = "1200px";
+                    container.style.height = "auto";
+                    container.style.maxHeight = "80vh";
                 }
             }
         });
@@ -1001,7 +1003,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     videoModal.style.display = "flex";
                     // Добавляем класс active для активации pointer-events
                     videoModal.classList.add('active');
-                    // Добавляем класс на body для надежного включения системного курсора
+                    // Добавляем класс на body для надежного включения системного курсора и блокировки скролла
                     document.body.classList.add('video-modal-open');
                     
                     // Плавное проявление
@@ -1019,7 +1021,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const closeModal = () => {
-            // Удаляем класс с body для возвращения кастомного курсора
+            // Удаляем класс с body для возвращения кастомного курсора и разблокировки скролла
             document.body.classList.remove('video-modal-open');
             // Удаляем класс active
             videoModal.classList.remove('active');
@@ -1036,8 +1038,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (container) {
                         container.style.aspectRatio = "";
                         container.style.width = "";
-                        container.style.height = "";
                         container.style.maxWidth = "";
+                        container.style.height = "";
+                        container.style.maxHeight = "";
                     }
                     if (typeof lenis !== 'undefined' && lenis) lenis.start(); // Запускаем скролл обратно
                 }

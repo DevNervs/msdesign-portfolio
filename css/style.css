@@ -1545,6 +1545,10 @@ footer {
     pointer-events: none;
     transition: opacity 0.5s var(--ease-custom);
 }
+body.video-modal-open {
+    overflow: hidden !important;
+}
+
 body.video-modal-open,
 body.video-modal-open * {
     cursor: auto !important;
