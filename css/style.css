@@ -314,8 +314,9 @@ nav a:hover {
     width: 28px;
     height: 20px;
     justify-content: space-between;
-    z-index: 100;
+    z-index: 10000;
     cursor: none !important;
+    position: relative;
 }
 
 .burger-btn span {
@@ -324,6 +325,19 @@ nav a:hover {
     height: 2px;
     background-color: var(--text-main);
     transition: transform 0.3s var(--ease-custom), opacity 0.3s var(--ease-custom);
+    transform-origin: center;
+}
+
+.burger-btn.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.burger-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-btn.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
 }
 
 /* Основной контент */
