@@ -1244,6 +1244,10 @@ footer {
     * { 
         cursor: auto !important; 
     }
+    .video-modal-close {
+        top: 20px;
+        right: 20px;
+    }
     .cursor-wrapper, .noise-overlay, .side-progress-bar { 
         display: none !important; 
     }
@@ -1583,8 +1587,8 @@ body.video-modal-open .video-modal-close * {
 
 .video-modal-close {
     position: absolute;
-    top: -60px;
-    right: 0;
+    top: 30px;
+    right: 40px;
     background: none;
     border: none;
     width: 40px;
@@ -1596,6 +1600,7 @@ body.video-modal-open .video-modal-close * {
     align-items: center;
     gap: 0;
     outline: none;
+    z-index: 10;
 }
 
 .video-modal-close * {
