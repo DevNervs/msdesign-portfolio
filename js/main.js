@@ -192,7 +192,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
     // Симуляция 3D-частиц (космической пыли)
     const particles = [];
-    const particleCount = 120;
+    const particleCount = window.innerWidth > 992 ? 120 : 45;
     
     // Создаем частицы с координатами, размером и скоростью
     for (let i = 0; i < particleCount; i++) {
@@ -332,6 +332,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!translations[lang]) lang = "en";
         currentLang = lang;
         localStorage.setItem("selectedLang", lang);
+
+        // Обновляем lang атрибут HTML для скринридеров и SEO
+        document.documentElement.lang = lang === 'ua' ? 'uk' : lang;
 
         // Обновляем статус кнопок переключателя
         document.querySelectorAll(".lang-btn").forEach(btn => {
@@ -508,9 +511,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Синхронизация Lenis и ScrollTrigger
         lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => {
-            lenis.raf(time * 1000);
-        });
+        // Убран дублирующий вызов lenis.raf через gsap.ticker
         gsap.ticker.lagSmoothing(0);
     }
 
@@ -847,6 +848,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+
+    // --- АВТОМАТИЧЕСКОЕ МАСШТАБИРОВАНИЕ TEXTAREA ---
+    const textarea = document.getElementById('client-message');
+    if (textarea) {
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 300) + 'px';
+        });
+    }
 
 
     // --- ИНТЕГРАЦИЯ ОТПРАВКИ ФОРМЫ В TELEGRAM ---
