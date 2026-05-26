@@ -1016,11 +1016,25 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (customCursor) {
                         gsap.to(customCursor, { opacity: 0, duration: 0.3 });
                     }
+
+                    // Добавляем состояние в историю для корректной работы системной кнопки "Назад" на мобильных
+                    history.pushState({ videoModalOpen: true }, "");
                 });
             }
         });
 
         const closeModal = () => {
+            // Закрытие модалки теперь всегда идет через history.back(), 
+            // если открыто состояние истории, чтобы синхронизировать системную кнопку "Назад"
+            if (history.state && history.state.videoModalOpen) {
+                history.back();
+            } else {
+                // Если состояния в истории нет (например, при сбое или перезагрузке), закрываем напрямую
+                directCloseModal();
+            }
+        };
+
+        const directCloseModal = () => {
             // Удаляем класс с body для возвращения кастомного курсора и разблокировки скролла
             document.body.classList.remove('video-modal-open');
             // Удаляем класс active
@@ -1053,11 +1067,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         };
 
+        // Подписываемся на события изменения истории (системная кнопка "Назад" на телефонах)
+        window.addEventListener('popstate', (e) => {
+            // Если модалка активна, закрываем ее физически
+            if (videoModal.classList.contains('active')) {
+                directCloseModal();
+            }
+        });
+
         closeBtn.addEventListener('click', closeModal);
         videoModal.querySelector('.video-modal-bg').addEventListener('click', closeModal);
 
         window.addEventListener('keydown', (e) => {
-            if (e.key === "Escape" && videoModal.style.display === "flex") {
+            if (e.key === "Escape" && videoModal.classList.contains('active')) {
                 closeModal();
             }
         });

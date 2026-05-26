@@ -1297,17 +1297,20 @@ footer {
         position: fixed;
         top: 0;
         left: 0;
-        width: 100vw;
-        height: 100vh;
+        width: 100vw !important;
+        height: 100vh !important;
         background-color: #050505;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start; /* Изменено с center для предотвращения обрезки верха при скролле */
         align-items: center;
-        gap: 50px;
+        gap: 40px;
         transform: translateY(-100%);
         transition: transform 0.6s var(--ease-custom);
         z-index: 95;
-        padding: 100px 5%;
+        padding: 120px 5% 60px; /* Достаточный отступ сверху и снизу для скролла */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        flex: none !important; /* Отключает флекс-влияние хедера, предотвращая сжатие в полоску */
     }
     
     .nav-container.active {
