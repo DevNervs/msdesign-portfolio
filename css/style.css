@@ -193,6 +193,15 @@ header.scrolled {
 .nav-container {
     display: flex;
     align-items: center;
+    position: fixed;
+    top: 24px;
+    right: 5%;
+    z-index: 91;
+    transition: top 0.3s var(--ease-custom);
+}
+
+header.scrolled + .nav-container {
+    top: 14px;
 }
 
 nav { 
@@ -1296,7 +1305,8 @@ footer {
     .nav-container {
         position: fixed;
         top: 0;
-        left: 0;
+        left: 0 !important;
+        right: 0 !important;
         width: 100vw !important;
         height: 100vh !important;
         background-color: #050505;
