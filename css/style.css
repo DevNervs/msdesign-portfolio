@@ -1477,7 +1477,6 @@ footer {
         display: block; 
         box-sizing: border-box; 
     }
-    
     .footer-bottom { 
         margin-top: 80px; 
         flex-direction: column; 
@@ -1485,4 +1484,125 @@ footer {
         text-align: center; 
         font-size: 0.9rem; 
     }
+}
+
+/* ==========================================================================
+   КИНЕМАТОГРАФИЧЕСКИЙ ВИДЕОПЛЕЕР (МОДАЛКА И ВИДЕО КАРТОЧЕК)
+   ========================================================================== */
+
+.showcase-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.45; /* Смешивание с темным оверлеем */
+    transition: opacity 0.6s var(--ease-custom), transform 0.8s var(--ease-custom);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.showcase-item:hover .showcase-video {
+    opacity: 0.85; /* Загорается при наведении */
+    transform: scale(1.05);
+}
+
+/* МОДАЛКА ВИДЕОПЛЕЕРА */
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s var(--ease-custom);
+}
+
+.video-modal.active {
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.video-modal-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.video-modal-container {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    aspect-ratio: 16 / 9;
+    z-index: 2;
+    background-color: #050505;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+    transform: scale(0.95);
+    transition: transform 0.5s var(--ease-custom);
+}
+
+.video-modal.active .video-modal-container {
+    transform: scale(1);
+}
+
+.video-player-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.video-player-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.video-modal-close {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: none !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    outline: none;
+}
+
+.video-modal-close span {
+    display: block;
+    width: 28px;
+    height: 2px;
+    background-color: #fff;
+    transition: background-color 0.3s;
+}
+
+.video-modal-close span:nth-child(1) {
+    transform: rotate(45deg) translateY(1px);
+}
+
+.video-modal-close span:nth-child(2) {
+    transform: rotate(-45deg) translateY(-1px);
+    margin-top: -2px;
+}
+
+.video-modal-close:hover span {
+    background-color: var(--accent-color);
 }

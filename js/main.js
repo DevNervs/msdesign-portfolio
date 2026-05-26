@@ -958,4 +958,49 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+    // --- ИНТЕГРАЦИЯ КИНО-ПЛЕЕРА ДЛЯ ВИДЕОКАРТОЧЕК ---
+    const videoModal = document.getElementById("video-modal");
+    const modalVideo = document.getElementById("modal-video-element");
+    const closeBtn = document.getElementById("video-modal-close");
+
+    if (videoModal && modalVideo && closeBtn) {
+        document.querySelectorAll('.showcase-item').forEach(item => {
+            const videoEl = item.querySelector('.showcase-video');
+            if (videoEl) {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modalVideo.src = videoEl.getAttribute('src');
+                    videoModal.style.display = "flex";
+                    // Плавное проявление
+                    gsap.to(videoModal, { opacity: 1, duration: 0.4, ease: "power2.out" });
+                    modalVideo.play();
+                    if (typeof lenis !== 'undefined' && lenis) lenis.stop(); // Стопорим скролл
+                });
+            }
+        });
+
+        const closeModal = () => {
+            gsap.to(videoModal, { 
+                opacity: 0, 
+                duration: 0.4, 
+                ease: "power2.in", 
+                onComplete: () => {
+                    videoModal.style.display = "none";
+                    modalVideo.pause();
+                    modalVideo.src = "";
+                    if (typeof lenis !== 'undefined' && lenis) lenis.start(); // Запускаем скролл обратно
+                }
+            });
+        };
+
+        closeBtn.addEventListener('click', closeModal);
+        videoModal.querySelector('.video-modal-bg').addEventListener('click', closeModal);
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === "Escape" && videoModal.style.display === "flex") {
+                closeModal();
+            }
+        });
+    }
 });
