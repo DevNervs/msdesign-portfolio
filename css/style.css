@@ -760,22 +760,12 @@ nav a:hover {
 }
 
 /* ACCENT ЦВЕТА ПО СЕКЦИЯМ */
-#videos {
-    --section-accent: #8B5CF6;
-}
-
 #animation {
     --section-accent: #F59E0B;
 }
 
 #motion {
     --section-accent: #06B6D4;
-}
-
-#videos .showcase-title,
-#videos .showcase-item:hover {
-    color: var(--section-accent);
-    border-color: rgba(139, 92, 246, 0.3);
 }
 
 #animation .showcase-title,
@@ -870,10 +860,6 @@ nav a:hover {
     z-index: 2;
 }
 
-#videos .showcase-glow {
-    background: radial-gradient(circle 120px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(139, 92, 246, 0.15) 0%, transparent 100%);
-}
-
 #animation .showcase-glow {
     background: radial-gradient(circle 120px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(245, 158, 11, 0.15) 0%, transparent 100%);
 }
@@ -895,10 +881,6 @@ nav a:hover {
     position: relative;
     transition: transform 0.8s var(--ease-custom);
     background: linear-gradient(135deg, #0a0a0a 0%, #151515 50%, #0a0a0a 100%);
-}
-
-#videos .showcase-placeholder {
-    background: linear-gradient(135deg, #0a0812 0%, #170b2b 50%, #0a0a0a 100%);
 }
 
 #animation .showcase-placeholder {

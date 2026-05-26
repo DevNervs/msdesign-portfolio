@@ -1,14 +1,13 @@
 // --- КОНФИГУРАЦИЯ TELEGRAM БОТА ---
 // Заполните эти данные для приема заявок от клиентов прямо в ваш Telegram.
 // Инструкция по получению токена бота и Chat ID находится в планах и ответах ассистента.
-const TELEGRAM_BOT_TOKEN = ""; // Замаскировано для безопасности каркаса
-const TELEGRAM_CHAT_ID = ""; // Укажите ваш Chat ID при продакшн развертывании
+const TELEGRAM_BOT_TOKEN = "8853068851:AAG1lknyjVVGipFwVFfH7zOQYyWrvzQExvs";
+const TELEGRAM_CHAT_ID = "YOUR_CHAT_ID_HERE";
 
 // --- СЛОВАРЬ ПЕРЕВОДОВ (EN / UA / ES) ---
 const translations = {
     en: {
         "nav-about": "About",
-        "nav-videos": "Videos",
         "nav-animation": "Animation",
         "nav-motion": "Motion",
         "nav-contact": "Contact",
@@ -21,8 +20,6 @@ const translations = {
         "stat-years": "Years of Excellence",
         "stat-projects": "Projects Delivered",
         "stat-clients": "Happy Clients",
-        "videos-title": "Videos",
-        "videos-desc": "Cinematic storytelling that captures the essence of luxury brands. High-end production with meticulous attention to every frame.",
         "animation-title": "Animation",
         "animation-desc": "Fluid visual narratives that bring ideas to life. From UI micro-interactions to full-scale animated experiences.",
         "motion-title": "Motion",
@@ -44,7 +41,6 @@ const translations = {
     },
     ua: {
         "nav-about": "Про нас",
-        "nav-videos": "Відео",
         "nav-animation": "Анімація",
         "nav-motion": "Моушн",
         "nav-contact": "Контакти",
@@ -57,8 +53,6 @@ const translations = {
         "stat-years": "Років Досвіду",
         "stat-projects": "Проектів Завершено",
         "stat-clients": "Задоволених Клієнтів",
-        "videos-title": "Відео",
-        "videos-desc": "Кінематографічний сторітелінг, що передає сутність люксових брендів. Преміальне виробництво з увагою до кожного кадру.",
         "animation-title": "Анімація",
         "animation-desc": "Плавні візуальні наративи, що оживляють ідеї. Від мікро-взаємодій інтерфейсу до масштабних анімаційних проектів.",
         "motion-title": "Моушн",
@@ -80,7 +74,6 @@ const translations = {
     },
     es: {
         "nav-about": "Nosotros",
-        "nav-videos": "Vídeos",
         "nav-animation": "Animación",
         "nav-motion": "Movimiento",
         "nav-contact": "Contacto",
@@ -93,8 +86,6 @@ const translations = {
         "stat-years": "Años de Excelencia",
         "stat-projects": "Proyectos Entregados",
         "stat-clients": "Clientes Satisfechos",
-        "videos-title": "Vídeos",
-        "videos-desc": "Narrativa cinematográfica que captura la esencia de las marcas de lujo. Producción de alta gama con atención meticulosa a cada fotograma.",
         "animation-title": "Animación",
         "animation-desc": "Narrativas visuales fluidas que dan vida a las ideas. Desde micro-interacciones UI hasta experiencias animadas a gran escala.",
         "motion-title": "Movimiento",
@@ -891,20 +882,56 @@ document.addEventListener("DOMContentLoaded", () => {
                                 `<b>📝 Описание проекта:</b>\n${message || '—'}`;
 
             try {
-                // Если константы токена заданы и не являются плейсхолдерами, отправляем в бота
-                if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID && TELEGRAM_BOT_TOKEN !== "YOUR_BOT_TOKEN_HERE" && TELEGRAM_CHAT_ID !== "YOUR_CHAT_ID_HERE") {
-                    const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            chat_id: TELEGRAM_CHAT_ID,
-                            text: textMessage,
-                            parse_mode: "HTML"
-                        })
-                    });
+                // Если задан токен бота, пробуем отправить сообщение
+                if (TELEGRAM_BOT_TOKEN && TELEGRAM_BOT_TOKEN !== "YOUR_BOT_TOKEN_HERE" && TELEGRAM_BOT_TOKEN !== "") {
+                    let chatIds = [];
+                    
+                    // Если Chat ID задан вручную, используем его
+                    if (TELEGRAM_CHAT_ID && TELEGRAM_CHAT_ID !== "YOUR_CHAT_ID_HERE" && TELEGRAM_CHAT_ID !== "") {
+                        chatIds.push(TELEGRAM_CHAT_ID);
+                    } else {
+                        // Иначе динамически опрашиваем getUpdates, чтобы найти всех, кто нажал /start
+                        try {
+                            const updatesResponse = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates`);
+                            if (updatesResponse.ok) {
+                                const updatesData = await updatesResponse.json();
+                                if (updatesData.ok && updatesData.result) {
+                                    const ids = updatesData.result.map(upd => {
+                                        if (upd.message && upd.message.chat) return upd.message.chat.id;
+                                        if (upd.my_chat_member && upd.my_chat_member.chat) return upd.my_chat_member.chat.id;
+                                        return null;
+                                    }).filter(id => id !== null);
+                                    // Убираем дубликаты
+                                    chatIds = [...new Set(ids)];
+                                }
+                            }
+                        } catch (e) {
+                            console.error("Error fetching Telegram updates:", e);
+                        }
+                    }
 
-                    if (!response.ok) {
-                        throw new Error("Telegram API request failed.");
+                    if (chatIds.length > 0) {
+                        // Отправляем всем найденным получателям
+                        const sendPromises = chatIds.map(chatId => {
+                            return fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    chat_id: chatId,
+                                    text: textMessage,
+                                    parse_mode: "HTML"
+                                })
+                            });
+                        });
+                        
+                        const responses = await Promise.all(sendPromises);
+                        const anyOk = responses.some(res => res.ok);
+                        if (!anyOk) {
+                            throw new Error("Telegram API request failed for all recipients.");
+                        }
+                    } else {
+                        console.warn("No active Chat IDs found. Please send a message or press /start in your bot first.");
+                        throw new Error("No active receivers. Please start the bot in Telegram first!");
                     }
                 } else {
                     // Имитация отправки для режима тестирования (локально)
