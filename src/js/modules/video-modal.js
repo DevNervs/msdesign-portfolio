@@ -10,23 +10,22 @@ export function initVideoModal(lenis) {
   const container = videoModal.querySelector(".video-modal-container");
 
   modalVideo.addEventListener("loadedmetadata", () => {
-    const videoWidth = modalVideo.videoWidth;
-    const videoHeight = modalVideo.videoHeight;
+    const vw = modalVideo.videoWidth;
+    const vh = modalVideo.videoHeight;
+    if (!container || !vw || !vh) return;
 
-    if (container && videoWidth && videoHeight) {
-      if (videoHeight > videoWidth) {
-        container.style.aspectRatio = "9 / 16";
-        container.style.width = "90%";
-        container.style.maxWidth = "420px";
-        container.style.height = "auto";
-        container.style.maxHeight = "80vh";
-      } else {
-        container.style.aspectRatio = "16 / 9";
-        container.style.width = "90%";
-        container.style.maxWidth = "1200px";
-        container.style.height = "auto";
-        container.style.maxHeight = "80vh";
-      }
+    container.style.aspectRatio = `${vw} / ${vh}`;
+
+    if (vh > vw) {
+      container.style.width = "auto";
+      container.style.maxWidth = "90vw";
+      container.style.height = "85dvh";
+      container.style.maxHeight = "85dvh";
+    } else {
+      container.style.height = "auto";
+      container.style.maxHeight = "85dvh";
+      container.style.width = "90vw";
+      container.style.maxWidth = "1200px";
     }
   });
 
@@ -36,14 +35,8 @@ export function initVideoModal(lenis) {
 
     item.addEventListener("click", (e) => {
       e.preventDefault();
-      modalVideo.src = videoEl.getAttribute("src");
-
-      const orientation = item.getAttribute("data-orientation") || "landscape";
-      const modalContainer = videoModal.querySelector(".video-modal-container");
-      if (modalContainer) {
-        modalContainer.classList.remove("portrait", "landscape");
-        modalContainer.classList.add(orientation);
-      }
+      const src = videoEl.getAttribute("src") || videoEl.getAttribute("data-src");
+      modalVideo.src = src;
 
       videoModal.style.display = "flex";
       videoModal.classList.add("active");
