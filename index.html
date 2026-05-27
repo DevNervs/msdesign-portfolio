@@ -29,47 +29,71 @@
     <link rel="icon" type="image/png" sizes="192x192" href="assets/favicons/favicon-192x192.png">
     <link rel="apple-touch-icon" href="assets/favicons/apple-touch-icon.png">
 
+    <!-- Preload critical font -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/syne/v22/8vIS7w4qzmVxsWxjBZRjr0FKM_04uQ6OQly5ng.woff2" as="font" type="font/woff2" crossorigin>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@700;800&display=swap&font-display=swap" rel="stylesheet">
-    
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
-    
-    <!-- GSAP Core & Plugins & Lenis Smooth Scroll -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "MS Design",
+      "url": "https://msdesign-portfolio.pages.dev",
+      "logo": "https://msdesign-portfolio.pages.dev/assets/favicons/favicon-192x192.png",
+      "description": "Architecture of premium visual worlds and digital experiences for brands that dictate their own rules.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Puerto Banús, Marbella",
+        "addressCountry": "ES"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+34-952-90-60-80",
+        "email": "info@msd-arquitectos.com",
+        "contactType": "customer service"
+      },
+      "sameAs": ["https://www.instagram.com/msdesign_es/"]
+    }
+    </script>
+
+    <!-- Vite entry -->
+    <script type="module" src="/src/js/main.js"></script>
 </head>
 <body>
 
-    <!-- ИНТЕРАКТИВНЫЙ ФОН -->
-    <canvas id="bg-canvas"></canvas>
+    <!-- Skip to content (a11y) -->
+    <a href="#about" class="skip-link">Skip to content</a>
 
-    <!-- 1. ПРЕЛОАДЕР -->
-    <div class="preloader" id="preloader">
+    <!-- INTERACTIVE BACKGROUND -->
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+    <!-- PRELOADER -->
+    <div class="preloader" id="preloader" aria-hidden="true">
         <div class="preloader-bg" id="preloader-bg"></div>
         <div class="counter" id="counter">0%</div>
     </div>
 
-    <!-- Тонкий шум (Оптимизированный GPU) -->
-    <div class="noise-overlay"></div>
+    <!-- Noise overlay -->
+    <div class="noise-overlay" aria-hidden="true"></div>
     
-    <!-- БОКОВОЙ ПРОГРЕСС-БАР -->
-    <div class="side-progress-bar" id="side-progress-bar">
+    <!-- SIDE PROGRESS BAR -->
+    <div class="side-progress-bar" id="side-progress-bar" aria-hidden="true">
         <div class="progress-line-fill"></div>
         <div class="nav-dots">
-            <a href="#about" class="nav-dot active" data-target="#about"><span class="dot-label">Philosophy</span></a>
-            <a href="#animation" class="nav-dot" data-target="#animation"><span class="dot-label">Animation</span></a>
-            <a href="#motion" class="nav-dot" data-target="#motion"><span class="dot-label">Motion</span></a>
-            <a href="#contact" class="nav-dot" data-target="#contact"><span class="dot-label">Contact</span></a>
+            <a href="#about" class="nav-dot active" data-target="#about" aria-label="Navigate to Philosophy section"><span class="dot-label">Philosophy</span></a>
+            <a href="#animation" class="nav-dot" data-target="#animation" aria-label="Navigate to Animation section"><span class="dot-label">Animation</span></a>
+            <a href="#motion" class="nav-dot" data-target="#motion" aria-label="Navigate to Motion section"><span class="dot-label">Motion</span></a>
+            <a href="#contact" class="nav-dot" data-target="#contact" aria-label="Navigate to Contact section"><span class="dot-label">Contact</span></a>
         </div>
     </div>
     
-    <!-- КУРСОР С КОЛЬЦОМ ПРОГРЕССА -->
-    <div class="cursor-wrapper" id="cursor">
+    <!-- CURSOR WITH PROGRESS RING -->
+    <div class="cursor-wrapper" id="cursor" aria-hidden="true">
         <div class="cursor-dot" id="cursor-dot"></div>
         <svg class="cursor-ring" viewBox="0 0 70 70">
             <circle cx="35" cy="35" r="33"></circle>
@@ -77,20 +101,18 @@
         </svg>
     </div>
 
-    <!-- НАВИГАЦИЯ -->
+    <!-- NAVIGATION -->
     <header>
-        <a href="#" class="logo magnetic" data-strength="20">MS<span>Design</span></a>
+        <a href="#" class="logo magnetic" data-strength="20" aria-label="MS Design - Home">MS<span>Design</span></a>
         
-        <!-- Кнопка бургер-меню для мобильных -->
-        <button class="burger-btn" id="burger-btn" aria-label="Toggle navigation">
+        <button class="burger-btn" id="burger-btn" aria-label="Toggle navigation" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
         </button>
-
     </header>
 
-    <div class="nav-container" id="nav-container">
+    <div class="nav-container" id="nav-container" role="navigation" aria-label="Main navigation">
         <nav>
             <div class="nav-link-wrapper magnetic" data-strength="15">
                 <a href="#about" class="js-nav-link scramble" data-i18n="nav-about">About</a>
@@ -106,14 +128,14 @@
             </div>
         </nav>
         
-        <!-- Переключатель языков -->
-        <div class="lang-switcher magnetic" data-strength="10">
-            <button class="lang-btn" data-lang="en">EN</button>
-            <button class="lang-btn" data-lang="ua">UA</button>
-            <button class="lang-btn" data-lang="es">ES</button>
+        <!-- Language Switcher -->
+        <div class="lang-switcher magnetic" data-strength="10" role="group" aria-label="Language selector">
+            <button class="lang-btn" data-lang="en" aria-label="Switch to English">EN</button>
+            <button class="lang-btn" data-lang="ua" aria-label="Switch to Ukrainian">UA</button>
+            <button class="lang-btn" data-lang="es" aria-label="Switch to Spanish">ES</button>
         </div>
 
-        <!-- Аудио-плеер / Переключатель звука -->
+        <!-- Sound Toggle -->
         <button class="sound-toggle magnetic" data-strength="15" id="sound-toggle" aria-label="Toggle UI Sounds">
             <span class="sound-bar"></span>
             <span class="sound-bar"></span>
@@ -122,7 +144,7 @@
         </button>
     </div>
 
-    <!-- HERO СЕКЦИЯ -->
+    <!-- HERO SECTION -->
     <main>
         <section class="hero">
             <h1 class="hero-title">
@@ -133,17 +155,17 @@
             <p class="hero-subtitle" data-i18n="hero-sub">Architecture of premium visual worlds and digital experiences for brands that dictate their own rules.</p>
         </section>
 
-        <!-- ABOUT СЕКЦИЯ -->
+        <!-- ABOUT SECTION -->
         <section class="about" id="about">
-            <div class="section-watermark">DESIGN</div>
+            <div class="section-watermark" aria-hidden="true">DESIGN</div>
             <h2 class="about-title gs-reveal text-reveal-mask">
                 <span class="text-reveal-line" data-i18n="about-title">Philosophy<br>of Dominance</span>
             </h2>
             <p class="about-text gs-reveal" data-i18n="about-text">We don't just draw pictures. We design visual codes of superiority. <strong>MS Design</strong> creates elite design that transmits unattainable status, causing awe and desire in the audience. Every detail is a strategic step towards the absolute leadership of the brand in its niche.</p>
         </section>
 
-        <!-- STATS СЕКЦИЯ -->
-        <section class="stats-section">
+        <!-- STATS SECTION -->
+        <section class="stats-section" aria-label="Company statistics">
             <div class="stats-grid">
                 <div class="stat-item gs-reveal">
                     <span class="stat-number" data-target="10">0</span><span class="stat-plus">+</span>
@@ -160,16 +182,16 @@
             </div>
         </section>
 
-        <!-- MARQUEE 2 -->
-        <div class="marquee-strip marquee-reverse">
+        <!-- MARQUEE -->
+        <div class="marquee-strip marquee-reverse" aria-hidden="true">
             <div class="marquee-track">
                 <span>FILM</span><span>PRODUCTION</span><span>VFX</span><span>3D</span><span>COMPOSITING</span><span>STORYTELLING</span><span>FILM</span><span>PRODUCTION</span><span>VFX</span><span>3D</span><span>COMPOSITING</span><span>STORYTELLING</span>
             </div>
         </div>
 
-        <!-- СЕКЦИЯ ANIMATION -->
+        <!-- ANIMATION SECTION -->
         <section class="showcase-section" id="animation">
-            <div class="section-watermark">ANIMATE</div>
+            <div class="section-watermark" aria-hidden="true">ANIMATE</div>
             <div class="showcase-header gs-reveal">
                 <h2 class="showcase-title text-reveal-mask"><span class="text-reveal-line" data-i18n="animation-title">Animation</span></h2>
                 <p class="showcase-desc" data-i18n="animation-desc">Fluid visual narratives that bring ideas to life. From UI micro-interactions to full-scale animated experiences.</p>
@@ -179,7 +201,7 @@
                     <div class="showcase-item-visual">
                         <div class="showcase-glow"></div>
                         <div class="showcase-placeholder anim-pulse">
-                            <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path d="M10 50 Q 30 20, 50 50 T 90 50" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
                                 <circle cx="50" cy="50" r="5" fill="rgba(255,255,255,0.05)"/>
                             </svg>
@@ -195,7 +217,7 @@
                     <div class="showcase-item-visual">
                         <div class="showcase-glow"></div>
                         <div class="showcase-placeholder anim-pulse">
-                            <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <circle cx="50" cy="50" r="30" stroke="rgba(255,255,255,0.02)" stroke-width="0.5"/>
                                 <circle cx="50" cy="50" r="10" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
                                 <line x1="0" y1="0" x2="100" y2="100" stroke="rgba(255,255,255,0.01)" stroke-width="0.5"/>
@@ -212,7 +234,7 @@
                     <div class="showcase-item-visual">
                         <div class="showcase-glow"></div>
                         <div class="showcase-placeholder anim-pulse">
-                            <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path d="M20 20 L80 20 L50 80 Z" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
                                 <line x1="50" y1="20" x2="50" y2="80" stroke="rgba(255,255,255,0.02)" stroke-width="0.5"/>
                             </svg>
@@ -227,9 +249,9 @@
             </div>
         </section>
 
-        <!-- СЕКЦИЯ MOTION -->
+        <!-- MOTION SECTION -->
         <section class="showcase-section" id="motion">
-            <div class="section-watermark">MOTION</div>
+            <div class="section-watermark" aria-hidden="true">MOTION</div>
             <div class="showcase-header gs-reveal">
                 <h2 class="showcase-title text-reveal-mask"><span class="text-reveal-line" data-i18n="motion-title">Motion</span></h2>
                 <p class="showcase-desc" data-i18n="motion-desc">Dynamic motion graphics that transform static visuals into captivating kinetic experiences. Titles, transitions, and visual effects.</p>
@@ -238,10 +260,10 @@
                 <div class="showcase-item gs-reveal" data-tilt data-orientation="portrait">
                     <div class="showcase-item-visual">
                         <div class="showcase-glow"></div>
-                        <video class="showcase-video" src="assets/videos/kriek.mp4" autoplay loop muted playsinline preload="metadata"></video>
+                        <video class="showcase-video" data-src="assets/videos/kriek.mp4" autoplay loop muted playsinline preload="none" poster=""></video>
                         <div class="showcase-placeholder">
                             <span class="project-num">04</span>
-                            <div class="play-indicator">▶</div>
+                            <div class="play-indicator">&#9654;</div>
                         </div>
                     </div>
                     <div class="showcase-meta">
@@ -253,7 +275,7 @@
                     <div class="showcase-item-visual">
                         <div class="showcase-glow"></div>
                         <div class="showcase-placeholder motion-wave">
-                            <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path d="M10 30 C 30 10, 30 80, 50 50 C 70 20, 70 90, 90 70" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
                             </svg>
                             <span class="project-num">05</span>
@@ -268,7 +290,7 @@
                     <div class="showcase-item-visual">
                         <div class="showcase-glow"></div>
                         <div class="showcase-placeholder motion-wave">
-                            <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <rect x="20" y="20" width="60" height="60" rx="30" stroke="rgba(255,255,255,0.02)" stroke-width="0.5"/>
                                 <line x1="20" y1="50" x2="80" y2="50" stroke="rgba(255,255,255,0.02)" stroke-width="0.5"/>
                             </svg>
@@ -284,7 +306,7 @@
                     <div class="showcase-item-visual">
                         <div class="showcase-glow"></div>
                         <div class="showcase-placeholder motion-wave">
-                            <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <circle cx="50" cy="50" r="40" stroke="rgba(255,255,255,0.02)" stroke-width="0.5"/>
                                 <path d="M30 50 L45 65 L70 35" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
                             </svg>
@@ -299,26 +321,25 @@
             </div>
         </section>
 
-        <!-- СЕКЦИЯ КОНТАКТОВ С ФОРМОЙ -->
+        <!-- CONTACT SECTION -->
         <section class="contact-section" id="contact">
             <div class="contact-info gs-reveal">
                 <h2 class="contact-title text-reveal-mask"><span class="text-reveal-line" data-i18n="contact-title">Let's discuss<br>your project</span></h2>
                 <div class="contact-details">
                     <div class="contact-detail-item">EMAIL: <a href="mailto:info@msd-arquitectos.com">info@msd-arquitectos.com</a></div>
                     <div class="contact-detail-item">TEL: <a href="tel:+34952906080">+34 952 90 60 80</a></div>
-                    <div class="contact-detail-item">LOCATION: Puerto Banús, Marbella, Spain</div>
+                    <div class="contact-detail-item">LOCATION: Puerto Ban&uacute;s, Marbella, Spain</div>
                 </div>
             </div>
             
             <div class="contact-form-container gs-reveal">
-                <!-- Форма обратной связи -->
-                <form class="contact-form" id="contact-form">
+                <form class="contact-form" id="contact-form" novalidate>
                     <div class="form-group">
-                        <input type="text" id="client-name" class="form-input" required placeholder=" ">
+                        <input type="text" id="client-name" class="form-input" required placeholder=" " autocomplete="name">
                         <label for="client-name" class="form-label" data-i18n="contact-label-name">Name</label>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="client-contact" class="form-input" required placeholder=" ">
+                        <input type="text" id="client-contact" class="form-input" required placeholder=" " autocomplete="email">
                         <label for="client-contact" class="form-label" data-i18n="contact-label-conn">Contact (Email / TG / Phone)</label>
                     </div>
                     <div class="form-group">
@@ -328,10 +349,9 @@
                     <button type="submit" class="form-submit-btn magnetic" data-strength="20" id="form-submit-btn" data-i18n="contact-btn">Send Request</button>
                 </form>
 
-                <!-- Оверлей успешной отправки -->
-                <div class="form-success-wrapper" id="form-success-wrapper">
+                <div class="form-success-wrapper" id="form-success-wrapper" role="alert">
                     <div class="success-icon">
-                        <svg width="36" height="28" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="36" height="28" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path d="M4 14L13 24L32 4" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
@@ -343,11 +363,11 @@
         </section>
     </main>
 
-    <!-- ФУТЕР -->
+    <!-- FOOTER -->
     <footer>
         <h2 class="cta-title gs-reveal text-reveal-mask"><span class="text-reveal-line" data-i18n="cta-title">Let's create a<br>cult project</span></h2>
         <div class="mag-button-wrapper magnetic" data-strength="60">
-            <a href="https://www.instagram.com/msdesign_es/" target="_blank" class="instagram-btn">Instagram Direct</a>
+            <a href="https://www.instagram.com/msdesign_es/" target="_blank" rel="noopener noreferrer" class="instagram-btn">Instagram Direct</a>
         </div>
         <div class="footer-bottom">
             <div data-i18n="footer-copy">&copy; 2026 MS DESIGN. Shaping the future of visuals.</div>
@@ -356,8 +376,8 @@
         </div>
     </footer>
 
-    <!-- КИНЕМАТОГРАФИЧЕСКИЙ ВИДЕОПЛЕЕР (МОДАЛКА) -->
-    <div class="video-modal" id="video-modal">
+    <!-- VIDEO MODAL -->
+    <div class="video-modal" id="video-modal" aria-hidden="true">
         <div class="video-modal-bg"></div>
         <button class="video-modal-close" id="video-modal-close" aria-label="Close video player">
             <span></span>
@@ -370,7 +390,5 @@
         </div>
     </div>
 
-    <!-- Main JavaScript -->
-    <script src="js/main.js"></script>
 </body>
 </html>
