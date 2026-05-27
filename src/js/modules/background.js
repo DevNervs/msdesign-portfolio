@@ -74,20 +74,10 @@ export function initBackgroundCanvas() {
     });
   }
 
-  let lastFrameTime = 0;
-  const targetFPS = isMobile ? 30 : 60;
-  const frameInterval = 1000 / targetFPS;
-
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  function drawFrame(timestamp) {
+  function drawFrame() {
     if (prefersReducedMotion) return;
-
-    if (timestamp - lastFrameTime < frameInterval) {
-      requestAnimationFrame(drawFrame);
-      return;
-    }
-    lastFrameTime = timestamp;
 
     time += 0.003;
     ctx.clearRect(0, 0, width, height);
